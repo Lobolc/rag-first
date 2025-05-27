@@ -47,7 +47,7 @@ def get_vector_store(docs):
     )
     vectorstore_faiss.save_local("faiss_index")
 
-# ---------------------- LLM Loaders ----------------------
+# Step 3: LLM Loaders
 
 def get_claude_llm():
     # Anthropic Claude v2
@@ -67,7 +67,7 @@ def get_titan_llm():
     )
     return llm
 
-# ---------------------- Prompt Template ----------------------
+# step 4: Prompt Template
 
 prompt_template = """
 Human: Use the following pieces of context to provide a 
@@ -89,7 +89,7 @@ PROMPT = PromptTemplate(
     input_variables=["context", "question"]
 )
 
-# ---------------------- QA Function ----------------------
+# Step 5: QA Function
 
 def get_response_llm(llm, vectorstore_faiss, query):
     qa = RetrievalQA.from_chain_type(
@@ -103,9 +103,9 @@ def get_response_llm(llm, vectorstore_faiss, query):
         chain_type_kwargs={"prompt": PROMPT}
     )
     answer = qa({"query": query})
-    return answer['result']
+    return answer["result"]
 
-# ---------------------- Streamlit App ----------------------
+# Step 6: Streamlit App
 
 def main():
     st.set_page_config(page_title="Chat PDF")
