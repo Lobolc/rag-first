@@ -67,7 +67,7 @@ def get_titan_llm():
     )
     return llm
 
-# step 4: Prompt Template
+# Step 4: Prompt Template
 
 prompt_template = """
 Human: Use the following pieces of context to provide a 
